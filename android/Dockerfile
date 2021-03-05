@@ -36,6 +36,8 @@ RUN touch /root/.android/repositories.cfg
 
 RUN yes | sdkmanager --install "platform-tools" "system-images;android-${ANDROID_API_LEVEL};google_apis;${ARCHITECTURE}" "platforms;android-${ANDROID_API_LEVEL}" "build-tools;${ANDROID_BUILD_TOOLS_LEVEL}" "emulator"
 
+RUN chmod +x -R /root/.android
+
 RUN echo "no" | avdmanager -v create avd -n "${EMULATOR_NAME}" -k "system-images;android-${ANDROID_API_LEVEL};google_apis;${ARCHITECTURE}" -f
 
 ENV PATH=$PATH:"/opt/gradle/gradle-${GRADLE_VERSION}/bin/"
