@@ -45,12 +45,6 @@ RUN wget https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.
     && gradle --version \
     && rm -rf /tmp/gradle*
 
-ADD start.sh /
-
-RUN chmod +x start.sh
-
-ADD appium-poc /appium-poc
-
 #==========================
 # Install Appium
 #==========================
