@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu:20.04
 
 ENV ANDROID_SDK_ROOT /opt/android
 # Preserved for backwards compatibility
@@ -9,9 +9,21 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 WORKDIR /
 
-SHELL ["/bin/bash", "-c"]
+#SHELL ["/bin/bash", "-c"]
 
-RUN apt update && apt install -y openjdk-14-jdk vim unzip libglu1 libpulse-dev libasound2 libc6  libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxi6  libxtst6 libnss3 wget curl
+RUN apt-get update && apt-get install -y --no-install-recommends \
+# Emulator & video bridge dependencies
+    libc6 libdbus-1-3 libfontconfig1 libgcc1 \
+    libpulse0 libtinfo5 libx11-6 libxcb1 libxdamage1 \
+    libnss3 libxcomposite1 libxcursor1 libxi6 \
+    libxext6 libxfixes3 zlib1g libgl1 \
+#Other packages
+    openjdk-14-jdk vim unzip wget curl \
+# Enable turncfg through usage of curl
+    curl ca-certificates && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
 ENV JAVA_HOME /usr/lib/jvm/java-14-openjdk-amd64/
 RUN export JAVA_HOME
 
