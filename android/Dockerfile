@@ -3,6 +3,7 @@ FROM ubuntu:20.04
 ENV ANDROID_SDK_ROOT /opt/android
 # Preserved for backwards compatibility
 ENV ANDROID_HOME /opt/android
+ENV ANDROID_AVD_HOME /root/.android/avd
 
 ENV TZ=Europe/Minsk
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
