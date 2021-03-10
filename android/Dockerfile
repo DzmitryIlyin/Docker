@@ -77,3 +77,5 @@ RUN chmod +x runAppium.sh
 
 EXPOSE 4723
 EXPOSE 5555
+
+CMD["./runAppium.sh"]
