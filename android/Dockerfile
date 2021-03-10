@@ -71,6 +71,9 @@ RUN curl -sL https://deb.nodesource.com/setup_14.x | bash && \
     apt-get autoremove --purge -y && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
     apt-get clean
+	
+ADD runAppium.sh /
+RUN chmod +x runAppium.sh
 
 EXPOSE 4723
 EXPOSE 5555
